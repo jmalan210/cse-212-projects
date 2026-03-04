@@ -1,3 +1,6 @@
+using System.Reflection.Metadata.Ecma335;
+using Microsoft.VisualBasic;
+
 public static class Arrays
 {
     /// <summary>
@@ -6,6 +9,10 @@ public static class Arrays
     /// integer greater than 0.
     /// </summary>
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
+    /// 
+    
+
+
     public static double[] MultiplesOf(double number, int length)
     {
         // TODO Problem 1 Start
@@ -13,7 +20,23 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return []; // replace this return statement with your own
+        //initialize new list
+        // write a for loop that initializes 'i' to 1, and  multiplies 'number' by 'i' while i is less than or equal to length. 
+        // add the result to the list
+        //return the list
+        //append list to array
+
+        List<double> results = new List<double> {};
+        for (var i = 1; i <= length; i++)
+        {
+            double multiple = number * i;
+            results.Add(multiple);
+
+          
+        }
+        return results.ToArray();
+      
+
     }
 
     /// <summary>
@@ -29,5 +52,17 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        //get list count
+        //use GetRange(index, count) to slice the amount off the end of the list
+        //assign those end values to a temp list
+        //insert temp list at the beginning of the permanent list
+
+        int length = data.Count();
+        Console.Write(length);
+        var tempList = data.GetRange(amount, length - amount);
+        Console.Write(tempList);
+        data.RemoveRange(amount, length - amount);
+        data.InsertRange(0, tempList);
     }
 }
