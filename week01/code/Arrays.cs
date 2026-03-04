@@ -58,11 +58,11 @@ public static class Arrays
         //assign those end values to a temp list
         //insert temp list at the beginning of the permanent list
 
-        int length = data.Count();
-        Console.Write(length);
-        var tempList = data.GetRange(amount, length - amount);
-        Console.Write(tempList);
-        data.RemoveRange(amount, length - amount);
+
+        var length = data.Count();
+        var tempList = data.GetRange(length - amount, amount);
+        data.RemoveRange(length - amount, amount);
         data.InsertRange(0, tempList);
+       
     }
 }
