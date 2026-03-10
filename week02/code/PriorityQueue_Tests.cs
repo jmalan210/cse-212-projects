@@ -9,7 +9,7 @@ public class PriorityQueueTests
     // Scenario: Create a queue with the following colors and priorities: yellow (3), red (5), green (1), orange (4), blue (2).
     //ensure that colors are removed from list from highest to lowest priority
     // Expected Result: red, orange, yellow, blue, green
-    // Defect(s) Found: Dequeue method was iterating for a value 1 less than the length of the list, was also not removing highest found value from the list.
+    // Defect(s) Found: Dequeue was iterating for a value 1 less than the length of the list, was also not removing highest found value from the list.
     public void TestPriorityQueue_1()
     {
         var red = new PriorityItem("red", 5);
