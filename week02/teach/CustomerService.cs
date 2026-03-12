@@ -11,9 +11,12 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Can I add one customer and then serve the customer.
+        // Expected Result: This should display the customer was added
         Console.WriteLine("Test 1");
+        var service = new CustomerService(4);
+        service.AddNewCustomer();
+        service.ServeCustomer();
 
         // Defect(s) Found: 
 
@@ -23,15 +26,53 @@ public class CustomerService {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 2");
+        service = new CustomerService(4);
+        service.AddNewCustomer();
+        service.AddNewCustomer();
+        Console.WriteLine($"Before serving customers: {service}");
+        service.ServeCustomer();
+        service.ServeCustomer();
+        Console.WriteLine($"After serving customers {service}");
 
         // Defect(s) Found: 
 
         Console.WriteLine("=================");
 
-        // Add more Test Cases As Needed Below
+        // Test 3:
+        //Scenario: Can I serve a customer if there is no customer:
+        //Expected result: This should display some error message
+        Console.WriteLine("Test 3");
+        service = new CustomerService(4);
+        service.ServeCustomer();
+
+        Console.WriteLine("=================");
+
+        //Test 4
+        //Scenario: Does the max queue size get enforced?
+        //Expected Result: This should display some errormessage when the 5th one is added
+        Console.WriteLine("Test 4");
+        service = new CustomerService(4);
+        service.AddNewCustomer();
+        service.AddNewCustomer();
+        service.AddNewCustomer();
+        service.AddNewCustomer();
+        service.AddNewCustomer();
+        Console.WriteLine($"Service Queue: {service}");
+
+        Console.WriteLine("=================");
+
+        //Test 4
+        //Scenario: Does the max size default to 10 if invalid value provided?
+        //Expected Result: It should display 10
+        Console.WriteLine("Test 5");
+        service = new CustomerService(0);
+        
+        Console.WriteLine($"Size should be: {service}");
+
+
     }
 
-    private readonly List<Customer> _queue = new List<Customer>();
+    private readonly List<Customer> _queue = new ();
     private readonly int _maxSize;
 
     public CustomerService(int maxSize) {
@@ -88,9 +129,18 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
-        var customer = _queue[0];
-        Console.WriteLine(customer);
+
+        if (_queue.Count <= 0)
+        {
+            Console.WriteLine("No Customers in the queue");
+        }
+        else
+        {
+            var customer = _queue[0];
+            _queue.RemoveAt(0);
+            Console.WriteLine(customer);
+        }
+       
     }
 
     /// <summary>
