@@ -31,7 +31,7 @@ public class CustomerService {
         // Add more Test Cases As Needed Below
     }
 
-    private readonly List<Customer> _queue = new();
+    private readonly List<Customer> _queue = new List<Customer>();
     private readonly int _maxSize;
 
     public CustomerService(int maxSize) {
@@ -67,7 +67,7 @@ public class CustomerService {
     /// </summary>
     private void AddNewCustomer() {
         // Verify there is room in the service queue
-        if (_queue.Count > _maxSize) {
+        if (_queue.Count >= _maxSize) {
             Console.WriteLine("Maximum Number of Customers in Queue.");
             return;
         }
