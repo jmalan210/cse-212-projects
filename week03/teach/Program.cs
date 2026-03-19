@@ -1,8 +1,8 @@
 ﻿Console.WriteLine("\n======================\nUnique Letters\n======================");
-UniqueLetters.Run();
+// UniqueLetters.Run();
 
-Console.WriteLine("\n======================\nDisplay Sums\n======================");
-DisplaySums.Run();
+// Console.WriteLine("\n======================\nDisplay Sums\n======================");
+// DisplaySums.Run();
 
 Console.WriteLine("\n======================\nBasketball\n======================");
 Basketball.Run();
@@ -11,8 +11,8 @@ Basketball.Run();
 // Console.WriteLine("\n======================\nUnique Letters\n======================");
 // UniqueLettersSolution.Run();
 
-// Console.WriteLine("\n======================\nDisplay Sums\n======================");
+// Console.WriteLine("\n======================\nDisplay Sums Solution\n======================");
 // DisplaySumsSolution.Run();
 
-// Console.WriteLine("\n======================\nBasketball\n======================");
-// BasketballSolution.Run();
+Console.WriteLine("\n======================\nBasketball\n======================");
+BasketballSolution.Run();
