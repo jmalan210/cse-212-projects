@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks.Dataflow;
 
 public static class Recursion
@@ -36,7 +37,7 @@ public static class Recursion
     /// using the formula: len(letters)! / (len(letters) - size)!
     ///
     /// For example, if letters was [A,B,C] and size was 2 then
-    /// the following would the contents of the results array after the function ran: AB, AC, BA, BC, CA, CB (might be in 
+    /// the following would be the contents of the results array after the function ran: AB, AC, BA, BC, CA, CB (might be in 
     /// a different order).
     ///
     /// You can assume that the size specified is always valid (between 1 
@@ -44,7 +45,19 @@ public static class Recursion
     /// </summary>
     public static void PermutationsChoose(List<string> results, string letters, int size, string word = "")
     {
-        // TODO Start Problem 2
+        if (word.Length == size)
+        {
+            results.Add(word);
+        }
+
+        else
+        {
+            for (var i = 0; i < letters.Length; i++)
+            {
+                var lettersLeft = letters.Remove(i, 1);
+                PermutationsChoose(results, lettersLeft, size, word + letters[i]);
+            }
+        }
     }
 
     /// <summary>
