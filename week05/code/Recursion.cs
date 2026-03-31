@@ -150,7 +150,7 @@ public static class Recursion
         {
             if (c != '0' && c != '1')
             {
-                allBinary = false; //if function encounters something other than 0 or 1, it moves along to the next instruction
+                allBinary = false; //if function encounters something other than 0 or 1, it breaks out of the loop and moves along to the next instruction
                 break;
             }
         }
@@ -162,8 +162,8 @@ public static class Recursion
         }
 
         int i = pattern.IndexOf('*');           //finds the first * in the string
-        string left = pattern[..i];             //takes everything to the left of *
-        string right = pattern[(i + 1)..];      //takes everything to the right of *
+        string left = pattern[..i];             //takes everything to the left of * (but not including *)
+        string right = pattern[(i + 1)..];      //takes everything to the right of * (but not including *)
 
         WildcardBinary(left + "0" + right, results); //changes * to 0 and adds anything to the left and right of that 0
         WildcardBinary(left + "1" + right, results); //changes * to 1 and adds anything to the left and right of that 1
