@@ -150,27 +150,26 @@ public static class Recursion
         {
             if (c != '0' && c != '1')
             {
-                allBinary = false;
+                allBinary = false; //if function encounters something other than 0 or 1, it moves along to the next instruction
                 break;
             }
         }
 
         if (allBinary)
         {
-            results.Add(pattern);
-            return;
+            results.Add(pattern); //if function sees that all results are either 0 or 1 it records the pattern to the List results
+            return;               //ends the recursive loop, prevents infinite loop
         }
 
-        int i = pattern.IndexOf('*');
-        string left = pattern[..i];
-        string right = pattern[(i + 1)..];
-          
-        WildcardBinary(left + "0" + right, results);
-        WildcardBinary(left + "1" + right, results);
-                
+        int i = pattern.IndexOf('*');           //finds the first * in the string
+        string left = pattern[..i];             //takes everything to the left of *
+        string right = pattern[(i + 1)..];      //takes everything to the right of *
 
-
+        WildcardBinary(left + "0" + right, results); //changes * to 0 and adds anything to the left and right of that 0
+        WildcardBinary(left + "1" + right, results); //changes * to 1 and adds anything to the left and right of that 1
     }
+    
+
     /// <summary>
     /// Use recursion to insert all paths that start at (0,0) and end at the
     /// 'end' square into the results list.
