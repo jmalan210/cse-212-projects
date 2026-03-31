@@ -190,55 +190,26 @@ public static class Recursion
             return;
         }
 
-        int newX = x - 1; //check for moving up
-        int newY = y;
+        var directions = new List<(int deltaX, int deltaY)>
+       {
+            (-1,0), //move left
+            (1,0),  //move right
+            (0,-1), //moving up
+            (0,1)   //moving down 
 
-        if (maze.IsValidMove(currPath, newX, newY))
-        {
-            currPath.Add((newX, newY));
-            SolveMaze(results, maze, newX, newY, currPath);
-            currPath.RemoveAt(currPath.Count - 1);
+       };
+
+        foreach (var (deltaX, deltaY) in directions){
+            int newX = x + deltaX;
+            int newY = y + deltaY;
+                if (maze.IsValidMove(currPath,newX, newY)) {
+
+                currPath.Add((newX, newY));
+                SolveMaze(results, maze, newX, newY, currPath);
+                currPath.RemoveAt(currPath.Count - 1);
+            }
         }
 
-        newX = x + 1; //check for moving down
-        newY = y;
-        if (maze.IsValidMove(currPath, newX, newY))
-        {
-            currPath.Add((newX, newY));
-            SolveMaze(results, maze, newX, newY, currPath);
-            currPath.RemoveAt(currPath.Count - 1);
-        }
-
-        newX = x;
-        newY = y - 1; //check for moving left
-        if (maze.IsValidMove(currPath, newX, newY))
-        {
-            currPath.Add((newX, newY));
-            SolveMaze(results, maze, newX, newY, currPath);
-            currPath.RemoveAt(currPath.Count - 1);
-        }
-
-        newX = x;
-        newY = y + 1; //check for moving right
-        if (maze.IsValidMove(currPath, newX, newY))
-        {
-            currPath.Add((newX, newY));
-            SolveMaze(results, maze, newX, newY, currPath);
-            currPath.RemoveAt(currPath.Count - 1);
-        }
-
-
-
-
-
-
-
-
-        // currPath.Add((1,2)); // Use this syntax to add to the current path
-
-        // TODO Start Problem 5
-        // ADD CODE HERE
-
-        // results.Add(currPath.AsString()); // Use this to add your path to the results array keeping track of complete maze solutions when you find the solution.
+       
     }
 }
