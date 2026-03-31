@@ -143,9 +143,34 @@ public static class Recursion
     /// </summary>
     public static void WildcardBinary(string pattern, List<string> results)
     {
-        // TODO Start Problem 4
-    }
 
+        bool allBinary = true;
+
+        foreach (char c in pattern)
+        {
+            if (c != '0' && c != '1')
+            {
+                allBinary = false;
+                break;
+            }
+        }
+
+        if (allBinary)
+        {
+            results.Add(pattern);
+            return;
+        }
+
+        int i = pattern.IndexOf('*');
+        string left = pattern[..i];
+        string right = pattern[(i + 1)..];
+          
+        WildcardBinary(left + "0" + right, results);
+        WildcardBinary(left + "1" + right, results);
+                
+
+
+    }
     /// <summary>
     /// Use recursion to insert all paths that start at (0,0) and end at the
     /// 'end' square into the results list.
@@ -157,7 +182,7 @@ public static class Recursion
         if (currPath == null) {
             currPath = new List<ValueTuple<int, int>>();
         }
-        
+
         // currPath.Add((1,2)); // Use this syntax to add to the current path
 
         // TODO Start Problem 5
