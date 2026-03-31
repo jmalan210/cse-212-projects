@@ -192,8 +192,8 @@ public static class Recursion
 
         var directions = new List<(int deltaX, int deltaY)>
        {
-            (-1,0), //move left
-            (1,0),  //move right
+            (-1,0), //moving left
+            (1,0),  //moving right
             (0,-1), //moving up
             (0,1)   //moving down 
 
