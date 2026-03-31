@@ -168,7 +168,7 @@ public static class Recursion
         WildcardBinary(left + "0" + right, results); //changes * to 0 and adds anything to the left and right of that 0
         WildcardBinary(left + "1" + right, results); //changes * to 1 and adds anything to the left and right of that 1
     }
-    
+
 
     /// <summary>
     /// Use recursion to insert all paths that start at (0,0) and end at the
@@ -178,9 +178,61 @@ public static class Recursion
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
-        if (currPath == null) {
+        if (currPath == null)
+        {
             currPath = new List<ValueTuple<int, int>>();
+            currPath.Add((0, 0));
         }
+
+        if (maze.IsEnd(x, y))
+        {
+            results.Add(currPath.AsString());
+            return;
+        }
+
+        int newX = x - 1; //check for moving up
+        int newY = y;
+
+        if (maze.IsValidMove(currPath, newX, newY))
+        {
+            currPath.Add((newX, newY));
+            SolveMaze(results, maze, newX, newY, currPath);
+            currPath.RemoveAt(currPath.Count - 1);
+        }
+
+        newX = x + 1; //check for moving down
+        newY = y;
+        if (maze.IsValidMove(currPath, newX, newY))
+        {
+            currPath.Add((newX, newY));
+            SolveMaze(results, maze, newX, newY, currPath);
+            currPath.RemoveAt(currPath.Count - 1);
+        }
+
+        newX = x;
+        newY = y - 1; //check for moving left
+        if (maze.IsValidMove(currPath, newX, newY))
+        {
+            currPath.Add((newX, newY));
+            SolveMaze(results, maze, newX, newY, currPath);
+            currPath.RemoveAt(currPath.Count - 1);
+        }
+
+        newX = x;
+        newY = y + 1; //check for moving right
+        if (maze.IsValidMove(currPath, newX, newY))
+        {
+            currPath.Add((newX, newY));
+            SolveMaze(results, maze, newX, newY, currPath);
+            currPath.RemoveAt(currPath.Count - 1);
+        }
+
+
+
+
+
+
+
 
         // currPath.Add((1,2)); // Use this syntax to add to the current path
 
